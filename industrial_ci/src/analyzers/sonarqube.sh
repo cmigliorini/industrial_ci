@@ -86,7 +86,7 @@ function analyzer_run_analysis {
 		fi
 	done < "${SONARQUBE_PACKAGES_FILE}"
 
-	sonar-scanner -Dsonar.projectBaseDir="${ws}/src/${TARGET_REPO_NAME}" \
+	sonar-scanner -X -Dsonar.projectBaseDir="${ws}/src/${TARGET_REPO_NAME}" \
     			  -Dsonar.working.directory="/root/sonar/working_directory" \
     			  -Dsonar.cfamily.build-wrapper-output="/root/sonar/bw_output" \
     			  -Dsonar.cfamily.gcov.reportsPath="${cov_report_path}" \
