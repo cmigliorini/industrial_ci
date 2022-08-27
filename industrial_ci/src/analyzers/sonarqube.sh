@@ -21,16 +21,16 @@ function analyzer_setup {
 	ici_install_pkgs_for_command wget wget
 	ici_install_pkgs_for_command ca-certificates ca-certificates
 	wget -P ~/sonar/downloads https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip
-	wget -P ~/sonar/downloads https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.4.0.2170.zip
+	wget -P ~/sonar/downloads https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747.zip
 
 	ici_install_pkgs_for_command unzip unzip
 	unzip ~/sonar/downloads/build-wrapper-linux-x86.zip -d ~/sonar/tools
-	unzip ~/sonar/downloads/sonar-scanner-cli-4.4.0.2170.zip -d ~/sonar/tools
+	unzip ~/sonar/downloads/sonar-scanner-cli-4.7.0.2747.zip -d ~/sonar/tools
 
 	chmod +x ~/sonar/tools/build-wrapper-linux-x86/build-wrapper-linux-x86-64
 
 	ln -s ~/sonar/tools/build-wrapper-linux-x86/build-wrapper-linux-x86-64 /usr/local/bin/sonar-build-wrapper
-	ln -s ~/sonar/tools/sonar-scanner-4.4.0.2170/bin/sonar-scanner /usr/local/bin/sonar-scanner
+	ln -s ~/sonar/tools/sonar-scanner-4.7.0.2747/bin/sonar-scanner /usr/local/bin/sonar-scanner
 
 	wget -P /usr/lib/cmake/CodeCoverage "https://raw.githubusercontent.com/kroshu/kroshu-tools/master/cmake/CodeCoverage.cmake"
 
