@@ -72,11 +72,13 @@ function analyzer_run_analysis {
     ici_parse_jobs jobs PARALLEL_TESTS 1
 
 	if [ "${EVENT_NAME}" == "push" ]; then
-		branch_args=("-Dsonar.branch.name=${BRANCH##?(refs/heads/)}")
+		echo "Detected that a PUSH was made, setting -Dsonar.branch.name=${BRANCH##?(refs/heads/)}"
+		# branch_args=("-Dsonar.branch.name=${BRANCH##?(refs/heads/)}")
 	else
-		branch_args=("-Dsonar.pullrequest.key=${PR_NUMBER}"
-					 "-Dsonar.pullrequest.branch=\"${PR_BRANCH}\""
-					 "-Dsonar.pullrequest.base=\"${PR_BASE}\"")
+		echo "Detected that a PUSH was NOT made, setting -Dsonar.pullrequest.key=${PR_NUMBER} -Dsonar.pullrequest.branch=\"${PR_BRANCH}\" -Dsonar.pullrequest.base=\"${PR_BASE}\""
+		# branch_args=("-Dsonar.pullrequest.key=${PR_NUMBER}"
+		# 			 "-Dsonar.pullrequest.branch=\"${PR_BRANCH}\""
+		# 			 "-Dsonar.pullrequest.base=\"${PR_BASE}\"")
 	fi
 
 	while read -r package
@@ -86,7 +88,7 @@ function analyzer_run_analysis {
 		fi
 	done < "${SONARQUBE_PACKAGES_FILE}"
 
-	sonar-scanner -X -Dsonar.projectBaseDir="${ws}/src/${TARGET_REPO_NAME}" \
+	sonar-scanner -Dsonar.projectBaseDir="${ws}/src/${TARGET_REPO_NAME}" \
     			  -Dsonar.working.directory="/root/sonar/working_directory" \
     			  -Dsonar.cfamily.build-wrapper-output="/root/sonar/bw_output" \
     			  -Dsonar.cfamily.gcov.reportsPath="${cov_report_path}" \
