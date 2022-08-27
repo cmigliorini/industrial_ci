@@ -42,6 +42,7 @@ In your package's sonar-project.properties:
 
 In the .travis.yml configuration file there are two additional environment variables you can define:
 
+- ANALYZER: set to `sonarqube` to enable analysis
 - SONARQUBE: If set to true, runs SonarQube scan after the project has been built and tests have been run. Unset by default.
 - TEST\_COVERAGE: If set to true, test coverage reports are also generated and analyzed by SonarQube. Unset by default. Note: to use the test coverage feature, your CMakeLists must contain the necessary additions. You can find a template [here](./CMakeLists_TestCoverageTemplate.txt), which you can append to the end of your CMakeLists. Note regarding the template: the name of the coverage target must be *coverage*, else industrial\_ci will exit with error. Support for multiple test coverage targets might be implemented in the future.
 
