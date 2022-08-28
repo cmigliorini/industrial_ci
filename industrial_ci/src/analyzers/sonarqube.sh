@@ -85,8 +85,13 @@ function analyzer_run_analysis {
 	do
 		if [ -d "${ws}/build/${package}/test_coverage" ]; then
 			cp -r "${ws}/build/${package}/test_coverage/" "${cov_report_path}/${package}"
+			echo "-- contents of test_coverage dir ${cov_report_path}/${package}"
+			ls -al "${cov_report_path}/${package}"
 		fi
 	done < "${SONARQUBE_PACKAGES_FILE}"
+
+	echo "-- content of cov_report_path ${cov_report_path}"
+	ls -al "${cov_report_path}"
 
 	sonar-scanner -Dsonar.projectBaseDir="${ws}/src/${TARGET_REPO_NAME}" \
     			  -Dsonar.working.directory="/root/sonar/working_directory" \
