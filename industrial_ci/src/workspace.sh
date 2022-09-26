@@ -129,6 +129,9 @@ function ici_init_apt {
     if [ -n "$_DEFAULT_DEBS" ]; then
         ici_parse_env_array debs_default _DEFAULT_DEBS
     fi
+    if [ -n "$TEST_COVERAGE" ]; then
+        debs_default+=(gcovr)
+    fi
     if [ -n "${debs_default[*]}" ]; then
         ici_apt_install "${debs_default[@]}"
     fi
